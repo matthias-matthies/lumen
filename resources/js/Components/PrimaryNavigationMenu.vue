@@ -1,14 +1,21 @@
 
 <template>
-    <div class="card">
-        <Menubar :model="items">
+    <div class="p-4">
+        <Menubar class="!rounded-xl" :model="items">
             <template #start>
                 <Link :href="route('dashboard')">
                     <ApplicationLogo />
                 </Link>
             </template>
             <template #item="{ item, props, hasSubmenu, root }">
-                <a class="flex items-center" v-bind="props.action">
+                <Link v-if="item.route" :href="item.route" class="flex items-center" v-bind="props.action">
+                    <span :class="item.icon" />
+                    <span class="ml-2">{{ item.label }}</span>
+                    <Badge v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
+                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+                    <i v-if="hasSubmenu" :class="['pi pi-angle-down', { 'pi-angle-down ml-2': root, 'pi-angle-right ml-auto': !root }]"></i>
+                </Link>
+                <a v-else class="flex items-center" v-bind="props.action">
                     <span :class="item.icon" />
                     <span class="ml-2">{{ item.label }}</span>
                     <Badge v-if="item.badge" :class="{ 'ml-auto': !root, 'ml-2': root }" :value="item.badge" />
@@ -40,12 +47,12 @@ const items = ref([
     {
         label: 'Home',
         icon: 'pi pi-home',
-        route: '/dashboard',
+        route: route('dashboard'),
     },
     {
         label: 'Courses',
         icon: 'pi pi-star',
-        route: 'course.index',
+        route: route('course.index'),
     },
     {
         label: 'Projects',

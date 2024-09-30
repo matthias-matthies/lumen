@@ -37,7 +37,7 @@ const props = defineProps({
         <Button
             :style="{ 'border-top-left-radius': '0px', 'border-bottom-left-radius': '0px' }"
             label="Delete"
-            icon="pi pi-delete-left"
+            icon="pi pi-trash"
             severity="danger"
         />
     </Link>
