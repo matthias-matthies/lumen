@@ -18,7 +18,7 @@
             </template>
             <template #end>
                 <div class="flex items-center gap-2">
-                    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
+                    <Avatar label="M" shape="circle" />
                 </div>
             </template>
         </Menubar>
@@ -39,11 +39,13 @@ import {Link} from '@inertiajs/vue3'
 const items = ref([
     {
         label: 'Home',
-        icon: 'pi pi-home'
+        icon: 'pi pi-home',
+        route: '/dashboard',
     },
     {
         label: 'Courses',
-        icon: 'pi pi-star'
+        icon: 'pi pi-star',
+        route: 'course.index',
     },
     {
         label: 'Projects',
@@ -91,4 +93,44 @@ const items = ref([
         badge: 3
     }
 ]);
+
+/*
+* const items = ref([
+    {
+        label: 'Router',
+        icon: 'pi pi-palette',
+        items: [
+            {
+                label: 'Styled',
+                route: '/theming/styled'
+            },
+            {
+                label: 'Unstyled',
+                route: '/theming/unstyled'
+            }
+        ]
+    },
+    {
+        label: 'Programmatic',
+        icon: 'pi pi-link',
+        command: () => {
+            router.push('/introduction');
+        }
+    },
+    {
+        label: 'External',
+        icon: 'pi pi-home',
+        items: [
+            {
+                label: 'Vue.js',
+                url: 'https://vuejs.org/'
+            },
+            {
+                label: 'Vite.js',
+                url: 'https://vitejs.dev/'
+            }
+        ]
+    }
+]);
+* */
 </script>
