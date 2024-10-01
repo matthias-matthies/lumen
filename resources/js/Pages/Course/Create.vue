@@ -1,17 +1,10 @@
 <script setup>
 import {Head, Link, useForm} from '@inertiajs/vue3'
-import { ref } from 'vue'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import Card from 'primevue/card'
 import InputText from 'primevue/inputtext'
-import InputGroup from 'primevue/inputgroup'
-import InputGroupAddon from 'primevue/inputgroupaddon'
 import Button from 'primevue/button'
-import PrimaryButton from '@/Components/PrimaryButton.vue'
-import InputError from '@/Components/InputError.vue'
-import InputLabel from '@/Components/InputLabel.vue'
-import TextInput from '@/Components/TextInput.vue'
-
+import Message from 'primevue/message'
 
 const form = useForm({
     code: '',
@@ -21,7 +14,7 @@ const form = useForm({
 
 const submit = () => {
     form.post(route('course.store'), {
-        onFinish: () => form.reset('code', 'name', 'url'),
+        //onFinish: () => form.reset('code', 'name', 'url'),
     });
 };
 </script>
@@ -57,62 +50,54 @@ const submit = () => {
                     </div>
                 </div>
             </template>
+
             <template #content>
                 <form @submit.prevent="submit">
                     <div>
-                        <InputLabel for="code" value="Code" />
-
-                        <TextInput
+                        <label for="code" class="block">Code*</label>
+                        <InputText
                             id="code"
                             type="text"
                             class="mt-1 block w-full"
                             v-model="form.code"
-                            required
                             autofocus
                         />
-
-                        <InputError class="mt-2" :message="form.errors.code" />
+                        <Message v-if="form.errors.code" severity="error" class="mt-2">{{ form.errors.code }}</Message>
                     </div>
 
                     <div class="mt-4">
-                        <InputLabel for="name" value="Name" />
-
-                        <TextInput
+                        <label for="name" class="block">Name*</label>
+                        <InputText
                             id="name"
                             type="text"
                             class="mt-1 block w-full"
                             v-model="form.name"
-                            required
                         />
-
-                        <InputError class="mt-2" :message="form.errors.name" />
+                        <Message v-if="form.errors.name" severity="error" class="mt-2">{{ form.errors.name }}</Message>
                     </div>
 
                     <div class="mt-4">
-                        <InputLabel for="url" value="Url" />
-
-                        <TextInput
+                        <label for="url" class="block">Url</label>
+                        <InputText
                             id="url"
                             type="url"
                             class="mt-1 block w-full"
                             v-model="form.url"
-                            required
                         />
-
-                        <InputError class="mt-2" :message="form.errors.password" />
+                        <Message v-if="form.errors.url" severity="error" class="mt-2">{{ form.errors.url }}</Message>
                     </div>
 
                     <div class="mt-4 flex items-center justify-end">
-
                         <Button
                             @click="submit"
                             label="Create"
                             icon="pi pi-plus"
-                            outlined
+                            class="p-button-outlined"
                         />
                     </div>
                 </form>
             </template>
+
         </Card>
     </AuthenticatedLayout>
 </template>
