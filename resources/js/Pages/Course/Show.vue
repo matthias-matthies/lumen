@@ -40,22 +40,11 @@ defineProps({
                             :href="route('course.edit', course)"
                         >
                             <Button
-                                :style="{ 'border-radius': '0px', 'border-left': '0px', 'border-right': '0px' }"
+                                :style="{ 'border-top-left-radius': '0px', 'border-bottom-left-radius': '0px', 'border-left': '0px' }"
                                 label="Edit"
                                 icon="pi pi-pencil"
                                 severity="secondary"
                                 outlined
-                            />
-                        </Link>
-                        <Link
-                            method="DELETE"
-                            :href="route('course.destroy', course)"
-                        >
-                            <Button
-                                :style="{ 'border-top-left-radius': '0px', 'border-bottom-left-radius': '0px' }"
-                                label="Delete"
-                                icon="pi pi-trash"
-                                severity="danger"
                             />
                         </Link>
                     </div>

@@ -91,12 +91,16 @@ const submit = () => {
                     </div>
 
                     <div class="mt-4 flex items-center justify-end">
-                        <Button
-                            @click="submit"
-                            label="Save"
-                            icon="pi pi-save"
-                            class="p-button-outlined"
-                        />
+                        <Link
+                            method="DELETE"
+                            :href="route('course.destroy', course)"
+                        >
+                            <Button
+                                label="Delete"
+                                icon="pi pi-trash"
+                                severity="danger"
+                            />
+                        </Link>
                     </div>
                 </form>
             </template>
