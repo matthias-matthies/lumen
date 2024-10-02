@@ -8,7 +8,12 @@ import Button from 'primevue/button';
 defineProps({
     course: {
         type: Array,
+        required: true
     },
+    lessons: {
+        type: Array,
+        required: true
+    }
 });
 </script>
 
@@ -58,7 +63,7 @@ defineProps({
                     Name: {{ course.name }}
                 </p>
                 <p>
-                    Url: <a href="{{ course.url }}">{{ course.url }}</a>
+                    Url: <a href="{{ course.url }}">{{ course.url ? "StudIp" : "" }}</a>
                 </p>
             </template>
         </Card>
@@ -69,7 +74,9 @@ defineProps({
                     Course Lessons
                 </template>
                 <template #content>
-                    TODO: Add lessons here
+                    TODO: Lessons list. Add lesson modular. Edit lesson modular. Delete lesson button.
+
+                    {{ lessons }}
                 </template>
             </Card>
 
